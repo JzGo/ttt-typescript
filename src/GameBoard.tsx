@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import Square from './Square'
 
+function GameBoard() {
+    const [ board, setBoard ] = useState(['', '', '', '', '', '', '', '', '']);
+    const [ player, setPlayer ] = useState('X');
+    const [ winStatus, setWinStatus ] = useState(false)
+    console.log(board);
+    
+
+    let allSquares = board.map((s, i) => {
+        return <Square pos={s} attack={() => (attack(setBoard, setPlayer, board,  i, player))}/>
+    });
+    return (
+        <div id="table">
+            {allSquares}
+        </div>
+    )
+};
+
 const findWin = (board:any) => {
     const winArray:any = [
         [ 0, 1, 2 ],
@@ -63,21 +80,5 @@ const attack = (boardUp:any, playerUp:any, board:any, i:number, p:string) => {
     }
 }
 
-function GameBoard() {
-    const [ board, setBoard ] = useState(['', '', '', '', '', '', '', '', '']);
-    const [ player, setPlayer ] = useState('X');
-    const [ winStatus, setWinStatus ] = useState(false)
-    console.log(board);
-    
-
-    let allSquares = board.map((s, i) => {
-        return <Square pos={s} attack={() => (attack(setBoard, setPlayer, board,  i, player))}/>
-    });
-    return (
-        <div id="table">
-            {allSquares}
-        </div>
-    )
-};
 
 export default GameBoard
