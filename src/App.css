@@ -1,6 +1,17 @@
+#gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
 #table {
   display: flex;
   width: 400px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -8,4 +19,5 @@
   height: 100px;
   width: 100px;
   border: 1px solid grey;
+  text-align: center;
 }

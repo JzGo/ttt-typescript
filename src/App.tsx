@@ -6,7 +6,8 @@ import GameBoard from './GameBoard';
 function App() {
 
   return(
-    <div>
+    <div id="gameContainer">
+      <h1>Tic Tac Toe</h1>
       <GameBoard />
     </div>
   )
