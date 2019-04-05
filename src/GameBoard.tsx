@@ -9,7 +9,7 @@ function GameBoard() {
     
 
     let allSquares = board.map((s, i) => {
-        return <Square pos={s} attack={() => (attack(setBoard, setPlayer, board,  i, player))}/>
+        return <Square pos={s} attack={() => (attack(setBoard, setPlayer, board,  i, player, setWinStatus, winStatus))}/>
     });
     return (
         <div id="table">
@@ -18,7 +18,7 @@ function GameBoard() {
     )
 };
 
-const findWin = (board:any) => {
+const findWin = (board:any, winUpdate:any) => {
     const winArray:any = [
         [ 0, 1, 2 ],
         [ 3, 4, 5 ],
@@ -39,6 +39,7 @@ const findWin = (board:any) => {
 
     if (winningCombo) {
         winner = board[winningCombo[0]]
+        winUpdate(true)
         alert(`${winner} is the winner!`)
     }
 
@@ -70,13 +71,13 @@ const playerUpdate = (updateMethod:any) => {
     })
 }
 
-const attack = (boardUp:any, playerUp:any, board:any, i:number, p:string) => {
+const attack = (boardUp:any, playerUp:any, board:any, i:number, p:string, winUp:any, won:boolean) => {
     console.log('doing stuff');
-    if (emptySqr(board, i)) {
+    if (emptySqr(board, i) && !won) {
         console.log('still doing stuff');
         boardUpdate(boardUp, i, p)
+        findWin(board, winUp)
         playerUpdate(playerUp)
-        findWin(board)
     }
 }
 
